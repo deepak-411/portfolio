@@ -1,3 +1,4 @@
 # portfolio
 
-# open link : https//kumardeepak.netlify.app
+# open link :
+https//kumardeepak.netlify.app
