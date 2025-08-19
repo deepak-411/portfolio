@@ -1,0 +1,477 @@
+                                                                                                                                             <!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak Kumar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Deepak Kumar • Innovator, Software Engineer & AI/ML Enthusiast — HyperDimensional 70D portfolio with parallax background, smooth scrolling, and in-page AI chatbot." />
+  <style>
+    :root{
+      --bg:#0b0b0f; --fg:#e6f6ff; --muted:#b7c6d6; --accent:#00fff0; --accent-2:#ff00ff;
+      --card:#12141a; --card-2:rgba(255,255,255,.06); --shadow:0 10px 30px rgba(0,255,255,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'Roboto',system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* ===== HyperDimensional 70D Background ===== */
+    #hyperbg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;background:radial-gradient(1200px 800px at 70% -10%,rgba(0,255,255,.15),transparent 60%),radial-gradient(800px 600px at 20% 110%,rgba(255,0,255,.14),transparent 60%),#06070a}
+
+    /* ===== Topbar / Navbar ===== */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(6,7,10,.55);border-bottom:1px solid rgba(0,255,255,.15)}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:26px;height:26px;border-radius:8px;background:conic-gradient(from 210deg,var(--accent),var(--accent-2),var(--accent));box-shadow:0 0 24px rgba(0,255,255,.6)}
+    .brand h1{font-size:18px;letter-spacing:.4px;color:var(--accent)}
+    nav a{margin-left:22px;font-weight:700;opacity:.9}
+    nav a.active, nav a:hover{color:var(--accent);text-shadow:0 0 12px var(--accent)}
+    .hamb{display:none;cursor:pointer;border:1px solid rgba(0,255,255,.3);border-radius:10px;padding:8px 10px}
+    .hamb span{display:block;width:22px;height:2px;background:var(--fg);margin:4px 0}
+
+    /* ===== Sections ===== */
+    section{min-height:100vh;padding:110px 22px 70px}
+    .container{max-width:1200px;margin:0 auto}
+    .title{font-size:34px;margin:0 0 14px;color:var(--accent);text-shadow:0 0 18px rgba(0,255,255,.7)}
+    .subtitle{color:var(--muted);margin-bottom:24px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero .card{padding:26px}
+    .me{display:flex;flex-direction:column;align-items:center;text-align:center}
+    .me img{width:190px;height:190px;border-radius:50%;border:3px solid var(--accent);box-shadow:0 0 35px rgba(0,255,255,.35);margin-bottom:16px}
+    .me h2{font-size:36px;margin:6px 0;color:var(--accent)}
+    .me h3{font-size:18px;color:#c9d7e5;margin:6px 0}
+    .typing{border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;width:0;animation:typing 4s steps(100,end) forwards,blink .7s infinite step-end alternate}
+    @keyframes typing{from{width:0}to{width:100%}}
+    @keyframes blink{50%{border-color:transparent}}
+    .cta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;justify-content:center}
+    .btn{padding:10px 18px;border-radius:999px;border:1px solid rgba(0,255,255,.45);background:rgba(0,255,255,.08);color:var(--fg);cursor:pointer;font-weight:700;box-shadow:var(--shadow)}
+    .btn:hover{background:rgba(0,255,255,.16)}
+
+    /* Cards / grids */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+    .card{background:var(--card-2);border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:var(--shadow);transform:translateY(16px) scale(.98);opacity:0;transition:.8s ease}
+    .card.visible{transform:translateY(0) scale(1);opacity:1}
+    .card h3{color:var(--accent);margin:0 0 8px}
+    .card p,.card li{color:#cfe3f6;line-height:1.6}
+    .tilt{perspective:800px}
+    .tilt .card{transform-style:preserve-3d;transition:transform .2s ease, box-shadow .2s ease}
+    .tilt .card:hover{transform:rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateY(-4px);box-shadow:0 20px 50px rgba(0,255,255,.18)}
+
+    /* Chatbot */
+    #chatbot{position:fixed;bottom:20px;right:20px;width:340px;max-height:560px;background:#0e1016;border:2px solid var(--accent);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;z-index:60;box-shadow:0 10px 40px rgba(0,255,255,.22)}
+    #chatbot-header{background:var(--accent);color:#001818;padding:10px 12px;font-weight:700;display:flex;align-items:center;gap:8px}
+    #chatbot-header .dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 12px #16a34a}
+    #chatbot-messages{flex:1;padding:12px 12px 4px;overflow-y:auto;scroll-behavior:smooth}
+    .chat-row{display:flex;gap:8px;margin:8px 0}
+    .chat-row.user{justify-content:flex-end}
+    .bubble{max-width:86%;padding:10px 12px;border-radius:14px;line-height:1.35}
+    .user .bubble{background:var(--accent);color:#001818;border-bottom-right-radius:4px}
+    .bot .bubble{background:#1a1e27;color:#e7f8ff;border-bottom-left-radius:4px}
+    .meta{font-size:11px;color:#8fa3b5;margin-top:3px}
+    #chatbot-input{display:flex;gap:6px;border-top:1px solid rgba(0,255,255,.3);padding:8px;background:#0b0e13}
+    #chat-input{flex:1;padding:10px;border:none;background:#121722;color:#fff;border-radius:10px;outline:none}
+    #send-btn{padding:10px 14px;background:var(--accent);border:none;border-radius:10px;color:#001818;font-weight:700;cursor:pointer}
+    #send-btn:disabled{opacity:.6;cursor:not-allowed}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;padding:8px 10px 10px;background:#0e1016;border-top:1px dashed rgba(0,255,255,.25)}
+    .chip{font-size:12px;border:1px solid rgba(0,255,255,.35);padding:6px 10px;border-radius:999px;cursor:pointer}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .probar{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;z-index:90}
+    .to-top{position:fixed;right:22px;bottom:90px;background:var(--accent);color:#001818;border:none;border-radius:999px;padding:10px 12px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);transition:.25s}
+    .to-top.show{opacity:1;transform:translateY(0)}
+
+    /* Mobile */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .hamb{display:block}
+      nav{position:fixed;inset:56px 0 auto 0;background:rgba(6,7,10,.95);backdrop-filter:blur(8px);padding:12px 22px;transform:translateY(-120%);transition:.25s}
+      nav.open{transform:translateY(0)}
+      nav a{display:block;margin:12px 0;font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="hyperbg" aria-hidden="true"></canvas>
+  <div class="probar" id="probar"></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand"><div class="logo"></div><h1>Deepak Kumar</h1></div>
+      <div class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0"><span></span><span></span><span></span></div>
+      <nav id="nav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero / About ===== -->
+  <section id="about">
+    <div class="container hero">
+      <div class="card visible">
+        <div class="me">
+          <img src="https://i0.wp.com/www.mmumullana.org/wp-content/uploads/2020/12/Deepak-Kumar.jpg?w=1203&ssl=1" alt="Deepak Photo" loading="lazy" />
+          <h2>Deepak Kumar</h2>
+          <h3>Innovator • Software Engineer • AI/ML Enthusiast</h3>
+          <p class="typing">Meet Deepak Kumar — graduated in Computer Engineering from MM (Deemed to be University).</p>
+          <p class="muted">Contact: <a href="mailto:dk3624897@gmail.com">dk3624897@gmail.com</a> • +91 88098 06498</p>
+          <div class="cta">
+            <!-- Resume Download -->
+             <a class="btn" href="https://drive.google.com/drive/folders/1J0Qu8G6Y0CJX09yo-yBX5Mf5rjlN8bjA?usp=drive_link" target="_blank">Download Resume</a>
+  </section>
+            <a class="btn" href="#projects">View Projects</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid tilt">
+        <article class="card"><div style="padding:20px"><h3>Technical & Innovative Skills</h3>
+          <p>Programming: C/C++, Python, Java, JavaScript, Node.js, React.js, PHP, SQL/MySQL, HTML, CSS</p>
+          <p>Web & Software: Full-Stack, Frontend & Backend, Android Development</p>
+          <p>Tools: Git, VS Code, OpenCV, Pandas, NumPy, XAMPP, Google Cloud, Arduino IDE</p>
+          <p>AI/ML: Deep Learning, NLP, Computer Vision • <em>Innovations:</em> Automated Crop Water Management (Patent)</p></div></article>
+        <article class="card"><div style="padding:20px"><h3>Education</h3>
+          <p><strong>Maharishi Markandeshwar (Deemed to be University)</strong>, Mullana, Haryana, India</p>
+          <p>B.Tech in Computer Science  And Engineering — CGPA: 7.95/10 (July 2019 – Aug 2023)</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience ===== -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="title">Work Experience</h2>
+      <p class="subtitle">A quick tour of my recent roles and contributions.</p>
+      <div class="grid tilt">
+        <article class="card"><div style="padding:20px"><h3>AI / ML Internship — Indian Air Force (Remote, Delhi)</h3>
+          <p class="muted">Dec 2023 – Mar 2024</p>
+          <ul>
+            <li>Developed AI models to optimize operational efficiency in defense systems.</li>
+            <li>Implemented ML algorithms in a high-security environment.</li>
+            <li>Advanced data analysis to enhance intelligence and automation.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>Software Engineer Intern — Ecolab, Bangalore</h3>
+          <p class="muted">Jan 2023 – Apr 2023</p>
+          <ul>
+            <li>Built and optimized software solutions for performance improvements.</li>
+            <li>Designed, tested, and debugged applications across teams.</li>
+            <li>Automation scripts to streamline workflows.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>Software Engineer Intern — Juspay, Bangalore</h3>
+          <p class="muted">Jun 2022 – Aug 2022</p>
+          <ul>
+            <li>Improved payment gateway transaction efficiency.</li>
+            <li>Used Java, SQL, C++, JavaScript for core modules.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>Project Contributor — PostgreSQL (Google Summer of Code)</h3>
+          <p class="muted">Jun 2022 – Sep 2022</p>
+          <ul>
+            <li>Enhanced pgarchives portal UI/UX and performance.</li>
+            <li>Shipped new features and optimizations with the OSS community.</li>
+          </ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="title">Projects</h2>
+      <p class="subtitle">Representative work across web, mobile, and applied AI.</p>
+      <div class="grid tilt">
+        <article class="card"><div style="padding:20px"><h3>Farmer Crop Insurance Claim (PMFBY)</h3>
+          <p class="muted">HTML, CSS, PHP, JavaScript | Oct 2022 – Dec 2022</p>
+          <ul>
+            <li>Web system to track insurance claims.</li>
+            <li>Real-time dashboards for stakeholders.</li>
+            <li>Improved transparency and efficiency.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>Deepak's Algorithm</h3>
+          <p class="muted">C++ | May 2022 – Oct 2022</p>
+          <ul>
+            <li>Optimized subarray query processing.</li>
+            <li>Significant time complexity reduction.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>MMDU UMS App</h3>
+          <p class="muted">Java, Android Studio | Jul 2021 – Dec 2021</p>
+          <ul>
+            <li>Secure authentication and real-time notifications.</li>
+            <li>Student & faculty resource access.</li>
+          </ul></div></article>
+        <article class="card"><div style="padding:20px"><h3>Keep Tab — Deep Learning Memory Aid</h3>
+          <p class="muted">2019 – 2021</p>
+          <ul>
+            <li>Wearable device to recall object locations.</li>
+            <li>Microcontroller, camera, accelerometer, voice search.</li>
+          </ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Achievements ===== -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="title">Achievements</h2>
+      <div class="grid tilt">
+        <article class="card"><div style="padding:20px"><p>Civil Judge of Bihar nominated me for Padma Shri Award 2024.</p></div></article>
+        <article class="card"><div style="padding:20px"><p>HackerEarth: Data Structure 3⭐, Algorithm 2⭐, C++ 5⭐.</p></div></article>
+        <article class="card"><div style="padding:20px"><p>HackerRank: C++ 5⭐, Problem Solving 5⭐ (Gold).</p></div></article>
+        <article class="card"><div style="padding:20px"><p>Google Cloud Silver League — 1st place (Image Captioning & Gen-AI).</p></div></article>
+        <article class="card"><div style="padding:20px"><p>Rajasthan IT Hackathon 2023 — First Prize.</p></div></article>
+        <article class="card"><div style="padding:20px"><p>TerraTech Hackathon 2023 — Winner.</p></div></article>
+        <article class="card"><div style="padding:20px"><p>100+ national & international awards in innovation, coding & research.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Certifications ===== -->
+  <section id="certifications">
+    <div class="container">
+      <h2 class="title">Certifications / Training</h2>
+      <div class="grid tilt">
+        <article class="card"><div style="padding:20px"><h3>ISRO — START</h3><p class="muted">Apr 2024 – May 2024</p></div></article>
+        <article class="card"><div style="padding:20px"><h3>Google Cloud Silver League</h3><p class="muted">Mar 2024</p></div></article>
+        <article class="card"><div style="padding:20px"><h3>Advanced React.js — Cutshort</h3><p class="muted">Sep 2023</p></div></article>
+        <article class="card"><div style="padding:20px"><h3>FPGA-Based Embedded Systems (SMDP-III) — NIELIT</h3><p class="muted">Oct 2020</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact + Chatbot Anchor ===== -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="title">Contact</h2>
+      <div class="two">
+        <div class="card"><div style="padding:20px"><p><strong>Email:</strong> <a href="mailto:dk3624897@gmail.com">dk3624897@gmail.com</a></p>
+          <p><strong>Phone:</strong> +91 88098 06498 (alt: +91 79922 98486)</p>
+          <p class="muted">Open to roles in full‑stack development, Android, and applied AI/ML.</p></div></div>
+        <div class="card"><div style="padding:20px"><h3>Quick Links</h3>
+          <div class="row">
+            <a class="btn" href="#projects">Top Projects</a>
+            <a class="btn" href="#experience">Experience</a>
+            <a class="btn" href="#achievements">Awards</a>
+            <a class="btn" href="#certifications">Training</a>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:30px;background:#0b0e14;border-top:1px solid rgba(0,255,255,.12);color:var(--accent)">© 2025 Deepak Kumar • All Rights Reserved</footer>
+
+  <!-- ===== In‑Page AI Chatbot ===== -->
+  <div id="chatbot" aria-live="polite">
+    <div id="chatbot-header"><span class="dot"></span> Chat with Deepak • Quick AI</div>
+    <div id="chatbot-messages"></div>
+    <div class="chips" id="quick-chips">
+      <span class="chip">Show resume</span>
+      <span class="chip">Your top projects?</span>
+      <span class="chip">Experience summary</span>
+      <span class="chip">Skills list</span>
+      <span class="chip">How to contact you</span>
+    </div>
+    <div id="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Ask about projects, skills, resume..." autocomplete="off"/>
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script>
+    /* =============================================================
+       HyperDepth 70D Engine — performant canvas starfield + links
+       - 70 depth slices (z in [1..70])
+       - Mouse parallax & gentle warp
+       ============================================================= */
+    (()=>{
+      const c=document.getElementById('hyperbg'); const ctx=c.getContext('2d');
+      let w=innerWidth,h=innerHeight, dpr= Math.min(2, window.devicePixelRatio||1);
+      function size(){w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+      size(); addEventListener('resize', size, {passive:true});
+
+      const DEPTH=70; // 70D
+      const COUNT=Math.min(1200, Math.floor((w*h)/1300));
+      const nodes=[]; // {x,y,z,dx,dy,hue}
+      for(let i=0;i<COUNT;i++){
+        nodes.push({x:Math.random()*w, y:Math.random()*h, z:1+Math.floor(Math.random()*DEPTH), dx:(Math.random()-.5)*.6, dy:(Math.random()-.5)*.6, hue:Math.random()*360});
+      }
+      let mx=w/2,my=h/2; addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+
+      function render(){
+        // trailing veil
+        ctx.fillStyle='rgba(6,8,12,0.35)'; ctx.fillRect(0,0,w,h);
+        // draw nodes by depth
+        nodes.sort((a,b)=>a.z-b.z);
+        for(const p of nodes){
+          const parx=(mx-w/2)/w, pary=(my-h/2)/h;
+          const speed = 0.2 + p.z/110; // deeper = faster
+          p.x += p.dx*speed + parx*p.z*.02; p.y += p.dy*speed + pary*p.z*.02;
+          // wrap
+          if(p.x<-10) p.x=w+10; if(p.x>w+10) p.x=-10; if(p.y<-10) p.y=h+10; if(p.y>h+10) p.y=-10;
+          const r = 0.5 + p.z*.03;
+          ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2);
+          ctx.fillStyle = `hsla(${p.hue}, 100%, 60%, ${0.25 + p.z/100})`;
+          ctx.fill();
+        }
+        // connective tissue (sparse)
+        ctx.lineWidth=1;
+        for(let i=0;i<nodes.length;i+=5){
+          const a=nodes[i]; for(let j=i+1;j<i+20 && j<nodes.length;j+=7){
+            const b=nodes[j]; const dx=a.x-b.x, dy=a.y-b.y; const dist=dx*dx+dy*dy;
+            if(dist<140*140 && Math.abs(a.z-b.z)<8){
+              const op = 0.02 + (1 - Math.sqrt(dist)/140) * 0.08;
+              ctx.strokeStyle=`rgba(0,255,255,${op})`;
+              ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+
+    /* ===== Hamburger + Scroll Spy ===== */
+    const nav = document.getElementById('nav');
+    const hamb = document.getElementById('hamb');
+    function toggleNav(){nav.classList.toggle('open'); const open=nav.classList.contains('open'); hamb.setAttribute('aria-expanded', String(open));}
+    hamb.addEventListener('click', toggleNav);
+    hamb.addEventListener('keydown', (e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleNav();}});
+
+    const links=[...nav.querySelectorAll('a')];
+    const sections=links.map(a=>document.querySelector(a.getAttribute('href')));
+    const spy = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+        }
+      })
+    },{rootMargin:'-40% 0px -55% 0px', threshold:0});
+    sections.forEach(s=>s&&spy.observe(s));
+
+    /* ===== Fade-in cards on view ===== */
+    const appear = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); appear.unobserve(e.target);}});
+    },{threshold:.15});
+    document.querySelectorAll('.card').forEach(c=>appear.observe(c));
+
+    /* ===== Subtle 3D tilt on .tilt .card ===== */
+    document.querySelectorAll('.tilt .card').forEach(card=>{
+      card.addEventListener('pointermove', e=>{
+        const rect=card.getBoundingClientRect();
+        const rx=((e.clientY-rect.top)/rect.height-.5)*-10; // tilt X
+        const ry=((e.clientX-rect.left)/rect.width-.5)*10;  // tilt Y
+        card.style.setProperty('--rx', rx+'deg');
+        card.style.setProperty('--ry', ry+'deg');
+      });
+      card.addEventListener('pointerleave', ()=>{card.style.removeProperty('--rx');card.style.removeProperty('--ry');});
+    });
+
+    /* ===== Scroll progress & Back-to-top ===== */
+    const probar=document.getElementById('probar');
+    const toTop=document.getElementById('toTop');
+    addEventListener('scroll',()=>{
+      const sc=scrollY, max=document.body.scrollHeight - innerHeight; const p = Math.max(0, Math.min(1, sc/max));
+      probar.style.width = (p*100)+'%';
+      toTop.classList.toggle('show', sc>500);
+    },{passive:true});
+    toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+    /* =============================================================
+       In‑Page AI Chatbot — intents + semantic cosine over KB
+       ============================================================= */
+    const Chat=(()=>{
+      const el={
+        box:document.getElementById('chatbot'),
+        messages:document.getElementById('chatbot-messages'),
+        input:document.getElementById('chat-input'),
+        send:document.getElementById('send-btn'),
+        chips:document.getElementById('quick-chips')
+      };
+
+      const KB=[
+        {q:"Who are you? About Deepak bio",a:"I’m Deepak Kumar — Innovator, Software Engineer, and AI/ML enthusiast. I graduated in Computer Engineering from MM (Deemed to be University). I work across full‑stack development, Android, and applied AI.",tags:["about"]},
+        {q:"How to contact Deepak email phone connect",a:"Reach me at <a href='mailto:dk3624897@gmail.com'>dk3624897@gmail.com</a> • +91 88098 06498 (alt: +91 79922 98486).",tags:["contact"]},
+        {q:"Resume CV download pdf",a:"Here’s my resume: <a class='btn' href='/assets/Deepak_Kumar_Resume.pdf' download>Download</a>. If the link doesn’t download, ping me!",tags:["resume"]},
+        {q:"Skills programming stacks languages frameworks tools",a:"Skills: C/C++, Python, Java, JS/Node/React, PHP, SQL/MySQL, HTML/CSS. Tools: Git, VS Code, OpenCV, Pandas, NumPy, XAMPP, Google Cloud, Arduino IDE. AI: Deep Learning, NLP, Computer Vision.",tags:["skills"]},
+        {q:"Experience internships Indian Air Force Ecolab Juspay GSoC PostgreSQL",a:"Highlights: AI/ML Internship @ Indian Air Force (Dec 2023–Mar 2024); SWE Intern @ Ecolab (Jan–Apr 2023); SWE Intern @ Juspay (Jun–Aug 2022); GSoC contributor for PostgreSQL (Jun–Sep 2022).",tags:["experience"]},
+        {q:"Projects farmer crop insurance PMFBY",a:"PMFBY portal: end‑to‑end crop insurance tracking with stakeholder dashboards.",tags:["projects"]},
+        {q:"Projects algorithm subarray",a:"Deepak’s Algorithm: optimized subarray query processing in C++.",tags:["projects"]},
+        {q:"Projects MMDU UMS Android",a:"MMDU UMS App: secure auth + real‑time notifications for students & faculty.",tags:["projects"]},
+        {q:"Projects keep tab memory aid wearable",a:"Keep Tab wearable: deep learning to recall object locations (camera + accel + voice).",tags:["projects"]},
+        {q:"Achievements hackathons awards",a:"Google Cloud Silver League (1st), Rajasthan IT Hackathon 2023 (1st), TerraTech 2023 (Winner), 100+ awards.",tags:["awards"]},
+        {q:"Certifications training START ISRO React NIELIT",a:"ISRO START (Apr–May 2024), Google Cloud Silver League (Mar 2024), Advanced React.js (Sep 2023), FPGA Embedded (Oct 2020).",tags:["certs"]},
+        {q:"Education degree mmdu",a:"B.Tech in Agricultural Engineering — MMDU, CGPA 7.95/10 (2019–2023).",tags:["education"]}
+      ];
+
+      // ---- tokenize / tf-idf / cosine ----
+      const stop=new Set("a an the is are am to for of and with in on at as by from or be this that it my me you your about how what where which who".split(" "));
+      const norm=s=>s.toLowerCase().replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+      const tokens=s=>norm(s).split(" ").filter(t=>t && !stop.has(t));
+      const tf=(arr)=>{const m={}; arr.forEach(t=>m[t]=(m[t]||0)+1); const n=arr.length||1; for(const k in m) m[k]/=n; return m;};
+      const docs=KB.map(x=>tokens((x.q+" "+x.a).toLowerCase()));
+      const df={}; docs.forEach(d=>{[...new Set(d)].forEach(t=>df[t]=(df[t]||0)+1)});
+      const N=KB.length; const idf=t=>Math.log(1 + N/((df[t]||0)));
+      const toVec=map=>{const v={}; for(const k in map) v[k]=map[k]*idf(k); return v};
+      const dot=(a,b)=>{let s=0; for(const k in a){if(b[k]) s+=a[k]*b[k]} return s};
+      const mag=v=>Math.sqrt(Object.values(v).reduce((p,c)=>p+c*c,0))||1;
+      const cosine=(a,b)=>dot(a,b)/(mag(a)*mag(b));
+      const KBV=docs.map(d=>toVec(tf(d)));
+
+      // intents
+      const intents=[
+        {name:"resume", re:/\b(resume|cv|download|pdf)\b/i, reply:()=>"Here’s my resume: <a class='btn' href='/assets/Deepak_Kumar_Resume.pdf' download>Download</a>"},
+        {name:"contact",re:/\b(contact|email|phone|reach|call)\b/i, reply:()=>"Email: <a href='mailto:dk3624897@gmail.com'>dk3624897@gmail.com</a> • Phone: +91 88098 06498"},
+        {name:"projects",re:/\b(project|portfolio|work)\b/i, reply:()=>"Highlights: PMFBY portal, Deepak’s Algorithm (C++), MMDU UMS App, Keep Tab wearable."},
+        {name:"skills",  re:/\b(skill|stack|tech|tools|language|framework)\b/i, reply:()=>"C/C++, Python, Java, JS/Node/React, PHP, SQL/MySQL, HTML/CSS • Tools: Git, OpenCV, Pandas, NumPy, GCP, Arduino • AI: DL, NLP, CV."},
+        {name:"experience",re:/\b(experience|intern|work|career)\b/i, reply:()=>"IAF (AI/ML), Ecolab (SWE), Juspay (SWE), GSoC PostgreSQL."}
+      ];
+
+      function addMsg(text, who='bot', html=false){
+        const row=document.createElement('div'); row.className=`chat-row ${who}`;
+        const bubble=document.createElement('div'); bubble.className='bubble';
+        if(html) bubble.innerHTML=text; else bubble.textContent=text;
+        row.appendChild(bubble);
+        const meta=document.createElement('div'); meta.className='meta'; meta.textContent=(who==='bot'?'AI':'You'); row.appendChild(meta);
+        el.messages.appendChild(row); el.messages.scrollTop=el.messages.scrollHeight;
+      }
+
+      function answer(text){
+        for(const I of intents){ if(I.re.test(text)) return {html:I.reply(), conf:0.99}; }
+        const qTok=tokens(text); const qVec=toVec(tf(qTok));
+        let bi=0,b=0; KBV.forEach((v,i)=>{const s=cosine(qVec,v); if(s>b){b=s;bi=i}});
+        const hit=KB[bi]; const conf=b;
+        const prefix = conf>0.35 ? "Sure — " : conf>0.2 ? "I think this helps: " : "Here’s what I can share: ";
+        const suffix = conf>0.5 ? "" : " If you want, ask more specifically for a deeper dive.";
+        return {html: prefix + hit.a + suffix, conf};
+      }
+
+      function send(){
+        const text=el.input.value.trim(); if(!text) return; el.input.value='';
+        addMsg(text,'user');
+        setTimeout(()=>{ const out=answer(text); addMsg(out.html,'bot',true); persist(); }, 120);
+      }
+
+      el.send.addEventListener('click', send);
+      el.input.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); send(); }});
+      el.chips.addEventListener('click', e=>{ const c=e.target.closest('.chip'); if(!c) return; el.input.value=c.textContent; send(); });
+
+      // persist chat
+      const KEY='deepak_chat_log_v2';
+      function persist(){ try{ localStorage.setItem(KEY, el.messages.innerHTML); }catch(_){} }
+      (function restore(){ try{ const html=localStorage.getItem(KEY); if(html){ el.messages.innerHTML=html; } else { addMsg("Hi! I’m Deepak’s quick AI assistant. Ask me about my projects, experience, skills, or type ‘resume’.", 'bot'); } }catch(_){ addMsg("Hi! I’m Deepak’s quick AI assistant. Ask me about my projects, experience, skills, or type ‘resume’.", 'bot'); } })();
+
+      return { send };
+    })();
+  </script>
+</body>
+</html>
